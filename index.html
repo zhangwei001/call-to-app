@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Call App Demo</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --psd: 750;
+        --rfz: 100;
+      }
+      html {
+        font-size: calc(100vw / var(--psd) * var(--rfz));
+      }
+    </style>
+  </head>
+  <body>
+    <div id="content"></div>
+    <script src="https://unpkg.com/vconsole@latest/dist/vconsole.min.js"></script>
+    <script src="demo/gcp.js"></script>
+    <script>
+      window.__lzd_call_app_config = {
+        from: "pdp",
+        img: "https://gcp-img.slatic.net/lazada/f0255f82-0a78-4568-b1a3-4494250daa09_VN-750-150.png",
+      };
+      console.log("LzdCallApp load success");
+      const callApp = new LzdCallApp({
+        from: "campaign",
+        timeout: 2000,
+        popupConfig: {
+          contentConfig: {
+            sg: {
+              desc: "Nikmati belanja lebih cepat dan mudah dengan aplikasi Lazada",
+              stayText: "Tetap di web",
+              installText: "Install sekarang",
+              icon: "//laz-img-cdn.alicdn.com/imgextra/i3/O1CN01fMB8lu1YLHZrqy1HJ_!!6000000003042-2-tps-264-264.png",
+            },
+          },
+          frequency: 50000,
+          stayCallback: () => console.log("lzd call app stay"),
+          installCallback: () => console.log("lzd call app install"),
+          closeCallback: () => console.log("lzd call app close"),
+        },
+      });
+
+      callApp.on("beforeEvoke", () => {});
+      callApp.on("evokeSuccess", () => {});
+      callApp.on("evokeFailed", (ins, appInfo) => {
+        console.log("evokeFailed", ins, appInfo);
+      });
+
+      callApp
+        .evokeApp({
+          autoType: 1,
+          needDownloadOnce: false,
+        })
+        .then((params) => {
+          console.log('auto evoke app', params);
+        });
+
+      var vConsole = new window.VConsole();
+    </script>
+  </body>
+</html>

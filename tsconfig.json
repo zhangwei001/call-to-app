@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "module": "es2015",
+    "noEmit": true,
+    "target": "es5",
+    "typeRoots": ["./typings"],
+    "lib": ["es6", "dom"],
+    "outDir": "dist",
+    "sourceMap": true,
+    "strict": true,
+    "noImplicitAny": false
+  },
+  "include": ["src/", "typings/"],
+  "exclude": ["node_modules", "dist"]
+}
